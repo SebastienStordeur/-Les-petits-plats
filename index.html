@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les petits plats</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header id="header" class="header">
+      <img src="/assets/logo.svg" alt="Les petits plats - Logo" class="logo" />
+      <h1>Les petits plats</h1>
+    </header>
+
+    <main id="main">
+      <div class="input-wrapper">
+        <input
+          class="search-input"
+          type="text"
+          placeholder="Rechercher une recette"
+        />
+        <img src="/assets/search.svg" alt="Search Icon" class="search-icon" />
+      </div>
+
+      <section id="filters" class="filter-section">
+        <div>Ingrédients</div>
+        <div>Appareils</div>
+        <div>Ustensiles</div>
+      </section>
+
+      <section id="recipes" class="recipe-section"></section>
+    </main>
+
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
