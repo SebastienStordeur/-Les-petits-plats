@@ -1,12 +1,20 @@
 import { createRecipeCard } from "./recipeCards";
 import { recipes } from "../data/recipes.json";
 /* import { filterRecipesWithWords } from "./searchRecipes"; */
-console.log(recipes)
-createRecipeCard(recipes);
+
 
 const recipeSection = document.querySelector('.recipe-section');
 const searchInput = document.querySelector(".search-input") as HTMLInputElement;
 let filteredRecipes:any = recipes
+
+/** Initialize UI elements and basic functionnalities */
+
+function init() {
+  createRecipeCard(recipes);
+  createArrays(recipes)
+}
+
+init()
 
 export function filterRecipesWithWords(recipes: any) {
   const searchInputValue:string = searchInput.value;
@@ -24,7 +32,6 @@ export function filterRecipesWithWords(recipes: any) {
   }
   
 }
-
 
 /** Create arrays for the tag filters */
 

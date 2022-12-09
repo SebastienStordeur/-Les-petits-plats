@@ -39,8 +39,8 @@ class Recipe {
     const image = document.createElement("div");
     const infos = document.createElement("div");
     const header = document.createElement("header");
+    const recipeDetails = document.createElement("div")
     const ingredientList = document.createElement("ul");
-    const ingredientItem = document.createElement("li");
     const description = document.createElement("p");
 
     card.classList.add("recipe-card");
@@ -50,25 +50,22 @@ class Recipe {
     card.appendChild(image);
     card.appendChild(infos);
     infos.appendChild(header);
-    infos.appendChild(ingredientList);
-    infos.appendChild(description);
+    infos.appendChild(recipeDetails)
+    recipeDetails.appendChild(ingredientList);
+    recipeDetails.appendChild(description);
 
     header.innerText = this.name
 
     for (let ingredient of this.ingredients) {
+      const ingredientItem = document.createElement("p")
       ingredientList.appendChild(ingredientItem);
       if (!ingredient.quantity && !ingredient.unit) {
         ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}</span>`;
       } else if (!ingredient.unit) {
-        ingredientItem.innerHTML =
-          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
-          ingredient.quantity;
+        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` + ingredient.quantity;
       } else
-        ingredientItem.innerHTML =
-          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
-          ingredient.quantity +
-          " " +
-          ingredient.unit;
+        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
+          ingredient.quantity + " " + ingredient.unit;
     }
 
     description.textContent = this.description;
