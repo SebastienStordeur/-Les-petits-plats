@@ -15,10 +15,8 @@ function init() {
 init();
 
 export function filterRecipesWithWords(recipes: any) {
-  emptySection();
   const searchInputValue: string = searchInput.value;
 
-  console.log(filteredRecipes);
   filteredRecipes = recipes.filter((recipe: any) => {
     const filterByName = recipe.name
       .toLowerCase()
@@ -29,7 +27,7 @@ export function filterRecipesWithWords(recipes: any) {
     /* const filterByIngredients = recipe.ingredients.filter(({ ingredient : any  }) => ingredient.toLowerCase().includes(searchInputValue.toLowerCase())).length > 0; */
     return filterByName || filterByDescription;
   });
-
+  emptySection();
   if (filteredRecipes.length === 0) {
     recipeSection!.innerHTML =
       "<span class='error'>Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc</span>";
@@ -61,7 +59,42 @@ function createArrays(recipes: any) {
       }
     }
   }
+  assignArrayElements(ingredientsArray, appliancesArray, ustensilsArray);
   return { ingredientsArray, appliancesArray, ustensilsArray };
+}
+
+function assignArrayElements(
+  ingredients: any[],
+  appliances: any[],
+  ustensils: any[]
+) {
+  const ingredientsContainer = document.querySelector(
+    ".ingredients"
+  ) as HTMLDivElement;
+  const appliancesContainer = document.querySelector(
+    ".appliances"
+  ) as HTMLDivElement;
+  const ustensilsContainer = document.querySelector(
+    ".ustensils"
+  ) as HTMLDivElement;
+
+  for (const ingredient of ingredients) {
+    const ingredientSpan = document.createElement("span");
+    ingredientsContainer.appendChild(ingredientSpan);
+    ingredientSpan.innerText = ingredient;
+  }
+  for (const appliance of appliances) {
+    const applianceSpan = document.createElement("span");
+    appliancesContainer.appendChild(applianceSpan);
+    applianceSpan.innerText = appliance;
+  }
+  for (const ustensil of ustensils) {
+    const ustensilSpan = document.createElement("span");
+    ustensilsContainer.appendChild(ustensilSpan);
+    ustensilSpan.innerText = ustensil;
+  }
+
+  return { ingredientsContainer, appliancesContainer, ustensilsContainer };
 }
 
 searchInput.addEventListener("input", () => filterRecipesWithWords(recipes));
