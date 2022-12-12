@@ -34,12 +34,18 @@ class Recipe {
     this.ustensils = data.ustensils;
   }
 
+  emptySection(): Element | null {
+    const recipeSection = document.querySelector(".recipe-section");
+    recipeSection!.innerHTML = "";
+    return recipeSection;
+  }
+
   createCard(): HTMLElement {
     const card = document.createElement("article");
     const image = document.createElement("div");
     const infos = document.createElement("div");
     const header = document.createElement("header");
-    const recipeDetails = document.createElement("div")
+    const recipeDetails = document.createElement("div");
     const ingredientList = document.createElement("ul");
     const description = document.createElement("p");
 
@@ -50,22 +56,27 @@ class Recipe {
     card.appendChild(image);
     card.appendChild(infos);
     infos.appendChild(header);
-    infos.appendChild(recipeDetails)
+    infos.appendChild(recipeDetails);
     recipeDetails.appendChild(ingredientList);
     recipeDetails.appendChild(description);
 
-    header.innerText = this.name
+    header.innerText = this.name;
 
     for (let ingredient of this.ingredients) {
-      const ingredientItem = document.createElement("p")
+      const ingredientItem = document.createElement("p");
       ingredientList.appendChild(ingredientItem);
       if (!ingredient.quantity && !ingredient.unit) {
         ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}</span>`;
       } else if (!ingredient.unit) {
-        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` + ingredient.quantity;
+        ingredientItem.innerHTML =
+          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
+          ingredient.quantity;
       } else
-        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
-          ingredient.quantity + " " + ingredient.unit;
+        ingredientItem.innerHTML =
+          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
+          ingredient.quantity +
+          " " +
+          ingredient.unit;
     }
 
     description.textContent = this.description;
@@ -73,10 +84,17 @@ class Recipe {
   }
 }
 
-export function createRecipeCard(recipes: any) {
+export function emptySection() {
   const recipeSection = document.querySelector(
     ".recipe-section"
   ) as HTMLDivElement;
+  recipeSection.innerHTML = "";
+  return recipeSection;
+}
+export function createRecipeCard(recipes: any[]): HTMLElement {
+  const recipeSection = document.querySelector(
+    ".recipe-section"
+  ) as HTMLElement;
   for (let recipe of recipes) {
     recipeSection.appendChild(new Recipe(recipe).createCard());
   }

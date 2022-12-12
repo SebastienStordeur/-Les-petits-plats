@@ -74,6 +74,7 @@ main {
 
 .recipe-section {
   display: grid;
+  grid-gap: 20px;
   width: 100%;
   max-width: 1440px;
   margin: auto;
@@ -83,7 +84,6 @@ main {
 @media (min-width: 767px) {
   .recipe-section {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
   }
 }
 
@@ -132,7 +132,6 @@ main {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   line-height: 12px;
-
   display: -webkit-box;
   -webkit-line-clamp: 9;
   -webkit-box-orient: vertical;
