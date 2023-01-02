@@ -60,41 +60,30 @@ class Recipe {
     recipeDetails.appendChild(ingredientList);
     recipeDetails.appendChild(description);
 
-    header.innerText = this.name;
-
     for (let ingredient of this.ingredients) {
       const ingredientItem = document.createElement("p");
       ingredientList.appendChild(ingredientItem);
       if (!ingredient.quantity && !ingredient.unit) {
         ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}</span>`;
       } else if (!ingredient.unit) {
-        ingredientItem.innerHTML =
-          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
-          ingredient.quantity;
+        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` + ingredient.quantity;
       } else
-        ingredientItem.innerHTML =
-          `<span class="ingredient-name">${ingredient.ingredient}: </span>` +
-          ingredient.quantity +
-          " " +
-          ingredient.unit;
+        ingredientItem.innerHTML = `<span class="ingredient-name">${ingredient.ingredient}: </span>` + ingredient.quantity + " " + ingredient.unit;
     }
 
+    header.innerText = this.name;
     description.textContent = this.description;
     return card;
   }
 }
 
 export function emptySection() {
-  const recipeSection = document.querySelector(
-    ".recipe-section"
-  ) as HTMLDivElement;
+  const recipeSection = document.querySelector(".recipe-section") as HTMLDivElement;
   recipeSection.innerHTML = "";
   return recipeSection;
 }
 export function createRecipeCard(recipes: any[]): HTMLElement {
-  const recipeSection = document.querySelector(
-    ".recipe-section"
-  ) as HTMLElement;
+  const recipeSection = document.querySelector(".recipe-section") as HTMLElement;
   for (let recipe of recipes) {
     recipeSection.appendChild(new Recipe(recipe).createCard());
   }

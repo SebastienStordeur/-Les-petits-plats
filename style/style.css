@@ -48,13 +48,14 @@
 }
 
 main {
-  margin: 0 5%;
-}
-.filter-section {
-  display: flex;
+  margin: 0 auto;
   width: 100%;
   max-width: 1440px;
-  margin: 25px auto;
+}
+
+.filter-section {
+  display: flex;
+  margin-top: 25px;
 }
 .filter {
   display: flex;
@@ -96,9 +97,7 @@ main {
 .recipe-section {
   display: grid;
   grid-gap: 20px;
-  width: 100%;
-  max-width: 1440px;
-  margin: auto;
+  margin-top: 25px;
   position: relative;
 }
 
