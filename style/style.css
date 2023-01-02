@@ -19,7 +19,8 @@
 
 .input-wrapper {
   width: 100%;
-  margin-top: 17px;
+  max-width: 1440px;
+  margin: 17px auto;
   position: relative;
 }
 .search-input {
@@ -73,12 +74,23 @@ main {
 }
 
 .container {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 14px;
   width: auto;
   height: 300px;
   overflow: hidden;
+  color: #FFF;
+}
+
+.ingredients, .ing {
+  background: #3282f7;
+}
+.appliances, .app {
+  background: #68D9A4;
+}
+.ustensils, .ust {
+  background: #ED6454;
 }
 
 .recipe-section {
@@ -153,4 +165,11 @@ main {
   font-family: "Lato", sans-serif;
   font-weight: 700;
   line-height: 14.4px;
+}
+
+.open {
+  display: none;
+}
+.show {
+  display: grid;
 }
