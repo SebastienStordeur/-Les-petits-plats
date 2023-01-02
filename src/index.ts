@@ -69,16 +69,19 @@ function assignArrayElements(ingredients: any[],appliances: any[], ustensils: an
     const ingredientSpan = document.createElement("span");
     ingredientsContainer.appendChild(ingredientSpan);
     ingredientSpan.innerText = ingredient;
+    ingredientSpan.classList.add('element')
   }
   for (const appliance of appliances) {
     const applianceSpan = document.createElement("span");
     appliancesContainer.appendChild(applianceSpan);
     applianceSpan.innerText = appliance;
+    applianceSpan.classList.add('element')
   }
   for (const ustensil of ustensils) {
     const ustensilSpan = document.createElement("span");
     ustensilsContainer.appendChild(ustensilSpan);
     ustensilSpan.innerText = ustensil;
+    ustensilSpan.classList.add('element')
   }
 
   return { ingredientsContainer, appliancesContainer, ustensilsContainer };
@@ -88,19 +91,32 @@ searchInput.addEventListener("input", () => filterRecipesWithWords(recipes));
 createArrays(recipes);
 
 
+function addTag() {
+  const tagsMenu = document.querySelectorAll('.element')
+  const tagsMenuArray = Array.from(tagsMenu)
+  const tagList = document.querySelector('.tag-list') as HTMLDivElement
+
+  for(let tag of tagsMenuArray) {
+    tag.addEventListener('click', () => {
+      const newTag = document.createElement('span')
+      tagList.appendChild(newTag)
+      newTag.innerHTML = tag.innerHTML
+    })
+  } 
+}
+
+addTag()
+
+
 function openTagsMenu() {
   const menus = document.querySelectorAll('.filter')
-  const itemsContainer = document.querySelectorAll('.container')
   const menusArray = Array.prototype.slice.call(menus)
-  const itemsContainerArray = Array.prototype.slice.call(itemsContainer)
 
-   for(let menu of menusArray) {
-    menu.addEventListener('click', (index:number) => {
-      console.log(index)
+  for(let menu of menusArray) {
+    menu.addEventListener('click', () => {
       menu.classList.add('open')
-      itemsContainerArray[index].classList.add('show')
+      menu.nextElementSibling.classList.add('show')
     })
-
   } 
 }
 openTagsMenu()
